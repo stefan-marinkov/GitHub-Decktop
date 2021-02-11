@@ -24,6 +24,7 @@ wrap.appendChild(input)
 wrap.appendChild(clock)
 start.textContent = 'START'
 
+// EVENT ON START BUTTON
 
 start.addEventListener('click', () => {
     
