@@ -27,17 +27,16 @@ start.textContent = 'START'
 
 start.addEventListener('click', () => {
     
-    start.style.opacity = '0'
+    start.style.visibility = 'hidden'
     const rest = createEl('button', 'rest')
-    wrap.appendChild(rest)
     rest.textContent = 'RESET'
+    
+    wrap.appendChild(rest)
     let time = input.value * 60
     setInterval(startTimer, 1000)
 
 function startTimer() {
 
-    
-    
     let minute = Math.floor( time / 60)
     let secund = time % 60
 
@@ -46,17 +45,14 @@ function startTimer() {
 
     
 
-    if( time > 0) {
+    if( time >= 0) {
         time --
         clock.innerHTML = `<p>${minute}</p><p>:</p><p>${secund}</p>`
         input.style.display = 'none'
     } 
-        
         rest.addEventListener('click', () => {
-            
             location.reload()
         })
-
     }
     
 startTimer()
