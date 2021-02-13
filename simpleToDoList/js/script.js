@@ -7,7 +7,6 @@ const addBtn = selectEl('.addItm')
 const ulList = selectEl('.ulList')
 let checkedItem = selectEl('.checked')
 
-
 // CREATE LIST
 
 addBtn.addEventListener('click', addItems)
@@ -34,20 +33,38 @@ addBtn.addEventListener('click', addItems)
     divLi.appendChild(dlt)
 
     ulList.appendChild(divLi)
+
     // RESTART VALUE
     input.value = ''
     // TOGGLE CHECK AND DELETE BUTTON
         check.addEventListener( 'click', () => {
             li.classList.toggle('active')
             check.classList.toggle('active')
-            localStorage.setItem('checked',JSON.stringify(input.value))
+            localStorage.setItem('liItems', ulList.innerHTML)
         })
+
+        const savedCheck = localStorage.getItem('liItems')
+        console.log(savedCheck)
+        
+        
+        checkedItem.addEventListener('click', () => {
+            if(savedCheck) {
+                if(!check.classList.contains('active')) {
+                    divLi.style.display = 'none'
+                } 
+            }
+        })
+        
+
         dlt.addEventListener('click', () => {
             divLi.style.display = 'none'
         })
+
+        // LOCAL STORAGE
+        
 }
 
-// LOCAL STORAGE
+
 
 
 
