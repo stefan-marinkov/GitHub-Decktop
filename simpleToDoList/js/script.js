@@ -5,14 +5,18 @@ import {createEl, selectEl} from './create.js'
 const input = selectEl('input')
 const addBtn = selectEl('.addItm')
 const ulList = selectEl('.ulList')
+const filterOption = selectEl('.option')
 let checkedItem = selectEl('.checked')
+let dltItem = selectEl('.deleted')
 
 // CREATE LIST
 
 addBtn.addEventListener('click', addItems)
+ulList.addEventListener('click', dltCheck)
+filterOption.addEventListener( 'click', filterList)
 
 // FUNCTION  CREATE DIV WITH ITEMS WITH CHECK AND DELETE
-    function addItems(e) {
+function addItems(e) {
     e.preventDefault()
     // CREATE ELEMENTS FOR LIST 
     const divLi = createEl('div', 'divLi')
@@ -36,35 +40,32 @@ addBtn.addEventListener('click', addItems)
 
     // RESTART VALUE
     input.value = ''
-    // TOGGLE CHECK AND DELETE BUTTON
-        check.addEventListener( 'click', () => {
-            li.classList.toggle('active')
-            check.classList.toggle('active')
-            localStorage.setItem('liItems', ulList.innerHTML)
-        })
-
-        const savedCheck = localStorage.getItem('liItems')
-        console.log(savedCheck)
-        
-        
-        checkedItem.addEventListener('click', () => {
-            if(savedCheck) {
-                if(!check.classList.contains('active')) {
-                    divLi.style.display = 'none'
-                } 
-            }
-        })
-        
-
-        dlt.addEventListener('click', () => {
-            divLi.style.display = 'none'
-        })
-
-        // LOCAL STORAGE
         
 }
 
+function dltCheck(e) {
+    let item = e.target
+    
+    // delete 
+    if( item.classList[0] === 'dlt') {
+        const parent = item.parentElement;
+        parent.classList.add('fall')
+        parent.addEventListener('transitionend', ()=> {
 
+            parent.remove()
+        })
+    }
 
+    // check
+    if( item.classList[0] === 'check') {
+         const sibling = item.previousSibling;
+         sibling.classList.toggle('active')
+         item.classList.toggle('complete')
+    }
+}
 
+// FILTER LIST
 
+function filterList(e) {
+    const option = e.target
+}

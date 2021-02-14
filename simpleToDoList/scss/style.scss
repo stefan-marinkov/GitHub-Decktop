@@ -36,8 +36,8 @@
         align-items: center;
         padding: 0;
         & .all,
-            .checked,
-            .dlt {
+            .completed,
+            .uncompleted {
                 width: 30%;
                 text-align: center;
                 margin: 0;
@@ -107,13 +107,21 @@
                 & .item.active {
                     text-decoration: line-through;
                 }
-                & .check.active,
-                  .check:active {
+                &   .check.complete,
+                    .check:active {
                     background-color: rgb(30, 185, 30);
                 }
-                & .dlt:active {
+                &   .dlt.active,
+                    .dlt:active {
                     background-color: rgb(243, 16, 16);
+                    
                 }
+                
+            }
+            & .fall {
+                transform: translateY(10rem) rotateZ(20deg);
+                transition: all 1.2s ease;
+                opacity: 0;
             }
         }
     }

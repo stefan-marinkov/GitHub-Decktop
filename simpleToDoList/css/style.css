@@ -30,8 +30,8 @@
     align-items: center;
     padding: 0; }
     .wrap .option .all,
-    .wrap .option .checked,
-    .wrap .option .dlt {
+    .wrap .option .completed,
+    .wrap .option .uncompleted {
       width: 30%;
       text-align: center;
       margin: 0;
@@ -88,10 +88,15 @@
         color: whitesmoke; }
       .wrap .list .ulList .divLi .item.active {
         text-decoration: line-through; }
-      .wrap .list .ulList .divLi .check.active,
+      .wrap .list .ulList .divLi .check.complete,
       .wrap .list .ulList .divLi .check:active {
         background-color: #1eb91e; }
+      .wrap .list .ulList .divLi .dlt.active,
       .wrap .list .ulList .divLi .dlt:active {
         background-color: #f31010; }
+    .wrap .list .ulList .fall {
+      transform: translateY(10rem) rotateZ(20deg);
+      transition: all 1.2s ease;
+      opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */
