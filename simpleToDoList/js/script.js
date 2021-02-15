@@ -29,8 +29,8 @@ function addItems(e) {
     }
     // HTML - TEXT CONTENT
     li.textContent = input.value
-    check.textContent = 'Ok'
-    dlt.textContent = 'X'
+    check.innerHTML = `<i class="fas fa-tasks"></i>`
+    dlt.innerHTML = `<i class="far fa-trash-alt"></i>`
     
     divLi.appendChild(li)
     divLi.appendChild(check)
@@ -59,13 +59,39 @@ function dltCheck(e) {
     // check
     if( item.classList[0] === 'check') {
          const sibling = item.previousSibling;
+         const parent = item.parentElement;
          sibling.classList.toggle('active')
          item.classList.toggle('complete')
+         parent.classList.toggle('completed')
     }
 }
 
 // FILTER LIST
 
 function filterList(e) {
-    const option = e.target
+    const todos = ulList.childNodes
+
+    todos.forEach( function(item){
+    console.log(item)
+
+        switch(e.target.value) {
+            case 'all':
+                item.style.display = 'flex'
+                break;
+            case 'completed':
+                if( item.classList.contains('completed')) {
+                    item.style.display = 'flex'
+                } else {
+                    item.style.display = 'none'
+                }
+                break;
+            case 'uncompleted':
+                if( !item.classList.contains('completed')) {
+                    item.style.display = 'flex'
+                } else {
+                    item.style.display = 'none'
+                }
+                break;
+        }      
+})
 }

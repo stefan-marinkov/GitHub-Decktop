@@ -41,16 +41,39 @@
       box-shadow: 1rem 1rem 1rem -5px rgba(255, 255, 255, 0.2);
       cursor: pointer; }
   .wrap .add {
-    padding: 5%; }
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
     .wrap .add h2 {
       color: whitesmoke;
       text-align: center;
       margin-bottom: 10%; }
+    .wrap .add select {
+      appearance: none;
+      outline: none;
+      border: none; }
     .wrap .add .option {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      margin: 5% auto; }
+      width: 100%;
+      margin: 1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 10px 0 gray;
+      color: whitesmoke; }
+    .wrap .add select {
+      width: 100%;
+      cursor: pointer;
+      padding: .5rem;
+      background-color: #014A7E;
+      color: whitesmoke; }
+    .wrap .add .option::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: .5rem;
+      pointer-events: none; }
     .wrap .add .addItems {
       width: 300px; }
       .wrap .add .addItems input {
@@ -69,6 +92,10 @@
         box-shadow: inset 0 0 25px 0 gray; }
   .wrap .list .ulList {
     list-style: none; }
+    .wrap .list .ulList .divLi.completed {
+      text-decoration: line-through;
+      opacity: .8;
+      box-shadow: 0 0 1rem 0 gray; }
     .wrap .list .ulList .divLi {
       width: 300px;
       display: flex;
@@ -80,20 +107,21 @@
         color: whitesmoke; }
       .wrap .list .ulList .divLi .check,
       .wrap .list .ulList .divLi .dlt {
-        width: 15%;
+        width: 20%;
         cursor: pointer;
         outline: none;
         background-color: transparent;
         box-shadow: inset 0 0 5px 0 gray;
         color: whitesmoke; }
-      .wrap .list .ulList .divLi .item.active {
-        text-decoration: line-through; }
       .wrap .list .ulList .divLi .check.complete,
       .wrap .list .ulList .divLi .check:active {
         background-color: #1eb91e; }
       .wrap .list .ulList .divLi .dlt.active,
       .wrap .list .ulList .divLi .dlt:active {
         background-color: #f31010; }
+      .wrap .list .ulList .divLi .fas,
+      .wrap .list .ulList .divLi .far {
+        pointer-events: none; }
     .wrap .list .ulList .fall {
       transform: translateY(10rem) rotateZ(20deg);
       transition: all 1.2s ease;

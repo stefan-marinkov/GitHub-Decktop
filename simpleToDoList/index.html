@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDoList</title>
+    <script src="https://kit.fontawesome.com/7113344bde.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -13,9 +14,11 @@
         <div class="add">
             <h2>Stefan's List</h2>
             <div class="option">
-                <button class='all'>All</button>
-                <button class='completed'>Compl</button>
-                <button class='uncompleted'>Uncompl</button>
+            <select name='todos'>
+                <option value='all'>All</option>
+                <option value='completed'>Compl</option>
+                <option value='uncompleted'>Uncompl</option>
+            </select>
             </div>
             <div class="addItems">
                 <input placeholder="Add Item">
@@ -23,9 +26,7 @@
             </div>
         </div>
         <div class="list">
-            <ul class="ulList">
-
-            </ul>
+            <ul class="ulList"></ul>
         </div>
         
     </div>

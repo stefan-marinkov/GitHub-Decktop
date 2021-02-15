@@ -50,16 +50,43 @@
     }
     & .add {
         padding: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         & h2 {
             color: whitesmoke;
             text-align: center;
             margin-bottom: 10%;
         }
+        & select {
+            appearance: none;
+            outline: none;
+            border: none;
+        }
         & .option {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            margin: 5% auto;
+            width: 100%;
+            margin: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow:  0 0 10px 0 gray;
+            color: whitesmoke;
+        }
+        & select {
+            width: 100%;
+            cursor: pointer;
+            padding: .5rem;
+            background-color: #014A7E;
+            color: whitesmoke;
+        }
+
+        & .option::after {
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: .5rem;
+            pointer-events: none;
         }
         & .addItems {
             width: 300px;
@@ -76,6 +103,7 @@
                 outline: none;
                 background-color: transparent;
                 cursor: pointer;
+
             }
             & .addItm:active {
                 box-shadow: inset 0 0 25px 0 gray;
@@ -85,6 +113,11 @@
     .list {
         & .ulList {
             list-style: none;
+            .divLi.completed {
+                text-decoration: line-through;
+                opacity: .8;
+                box-shadow: 0 0 1rem 0 gray;
+            }
             .divLi {
                 width: 300px;
                 display: flex;
@@ -97,15 +130,12 @@
                 }
                 & .check,
                 .dlt {
-                    width: 15%;
+                    width: 20%;
                     cursor: pointer;
                     outline: none;
                     background-color: transparent;
                     box-shadow: inset 0 0 5px 0 gray;
                     color: whitesmoke;
-                }
-                & .item.active {
-                    text-decoration: line-through;
                 }
                 &   .check.complete,
                     .check:active {
@@ -115,6 +145,10 @@
                     .dlt:active {
                     background-color: rgb(243, 16, 16);
                     
+                }
+                & .fas,
+                .far {
+                    pointer-events: none;
                 }
                 
             }
