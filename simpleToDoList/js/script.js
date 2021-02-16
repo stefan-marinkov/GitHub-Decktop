@@ -11,6 +11,7 @@ let dltItem = selectEl('.deleted')
 
 // CREATE LIST
 
+document.addEventListener('DOMContentLoaded', getItems)
 addBtn.addEventListener('click', addItems)
 ulList.addEventListener('click', dltCheck)
 filterOption.addEventListener( 'click', filterList)
@@ -27,6 +28,9 @@ function addItems(e) {
     if( input.value === '') {
         divLi.style.display = 'none'
     }
+    //LOCAL STORAGE
+    saveToLocal(input.value)
+
     // HTML - TEXT CONTENT
     li.textContent = input.value
     check.innerHTML = `<i class="fas fa-tasks"></i>`
@@ -50,6 +54,7 @@ function dltCheck(e) {
     if( item.classList[0] === 'dlt') {
         const parent = item.parentElement;
         parent.classList.add('fall')
+        removeLocal(parent)
         parent.addEventListener('transitionend', ()=> {
 
             parent.remove()
@@ -69,10 +74,9 @@ function dltCheck(e) {
 // FILTER LIST
 
 function filterList(e) {
-    const todos = ulList.childNodes
+    const items = ulList.childNodes
 
-    todos.forEach( function(item){
-    console.log(item)
+    items.forEach( function(item){
 
         switch(e.target.value) {
             case 'all':
@@ -94,4 +98,54 @@ function filterList(e) {
                 break;
         }      
 })
+}
+
+function saveToLocal(item) {
+    let items;
+    if(localStorage.getItem('items') === null) {
+        items = []
+    } else {
+        items = JSON.parse(localStorage.getItem('items'))
+    }
+    items.push(item)
+    localStorage.setItem('items', JSON.stringify(items))
+}
+
+function getItems() {
+    let items;
+    if(localStorage.getItem('items') === null) {
+        items = []
+    } else {
+        items = JSON.parse(localStorage.getItem('items'))
+    }
+    items.forEach( item => {
+                // CREATE ELEMENTS FOR LIST 
+            const divLi = createEl('div', 'divLi')
+            const li = createEl('li', 'item')
+            const check = createEl('button', 'check')
+            const dlt = createEl('button', 'dlt')
+
+            // HTML - TEXT CONTENT
+            li.textContent = item
+            check.innerHTML = `<i class="fas fa-tasks"></i>`
+            dlt.innerHTML = `<i class="far fa-trash-alt"></i>`
+            
+            divLi.appendChild(li)
+            divLi.appendChild(check)
+            divLi.appendChild(dlt)
+
+            ulList.appendChild(divLi)
+            })
+}
+
+function removeLocal(item) {
+    let items;
+    if(localStorage.getItem('items') === null) {
+        items = []
+    } else {
+        items = JSON.parse(localStorage.getItem('items'))
+    }
+    const itemIndex = item.children[0].innerText
+    items.splice(items.indexOf(itemIndex, 1))
+    localStorage.setItem('items', JSON.stringify(items))
 }

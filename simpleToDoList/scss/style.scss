@@ -154,7 +154,7 @@
             }
             & .fall {
                 transform: translateY(10rem) rotateZ(20deg);
-                transition: all 1.2s ease;
+                transition: all .7s ease;
                 opacity: 0;
             }
         }
